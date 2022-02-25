@@ -18,7 +18,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserForAdminSerializer(serializers.ModelSerializer):
     """CRUD для админа"""
-    city = CitySerializer(read_only=True)
+    city = CitySerializer()
 
     class Meta:
         model = CustomUser
