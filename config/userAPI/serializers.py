@@ -3,6 +3,12 @@ from rest_framework import serializers
 from .models import CustomUser
 
 
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = "__all__"
+
+
 class UserSerializer(serializers.ModelSerializer):
     """Постраничное получение кратких данных обо всех пользователях, User"""
     class Meta:
@@ -12,6 +18,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 class UserForAdminSerializer(serializers.ModelSerializer):
     """CRUD для админа"""
+    city = CitySerializer(read_only=True)
+
     class Meta:
         model = CustomUser
         fields = ['username', 'first_name', 'last_name', 'other_name', 'email', 'phone', 'birthday',
